@@ -63,13 +63,9 @@ todo-api/
 │   ├── routes/
 │   │   └── todos.ts                # REST endpoint definitions
 │   └── store/
-│       └── todosStore.ts           # In-memory data operations (no database)
-├── .env                            # Local environment variables (git-ignored)
+│       └── todosStore.ts           # In-memory data operations (no database)                           
 ├── .env.example                    # Template for environment variables
-├── .gitignore
-├── package.json
-├── tsconfig.json
-└── README.md
+
 ```
 
 ## Endpoints
@@ -103,12 +99,16 @@ todo-api/
 - `POST /todos` returns `201` when created.
 - `DELETE /todos/:id` returns `204` when deleted.
 
-## Response Examples
+## Examples
 
 ### GET /
 
-Status: `200 OK`
+**Request**
+```bash
+curl http://localhost:3000/
+```
 
+**Response** `200 OK`
 ```json
 {
   "message": "Todo API is running",
@@ -116,10 +116,16 @@ Status: `200 OK`
 }
 ```
 
+---
+
 ### GET /todos
 
-Status: `200 OK`
+**Request**
+```bash
+curl http://localhost:3000/todos
+```
 
+**Response** `200 OK`
 ```json
 [
   {
@@ -131,10 +137,16 @@ Status: `200 OK`
 ]
 ```
 
+---
+
 ### GET /todos/:id
 
-Status: `200 OK`
+**Request**
+```bash
+curl http://localhost:3000/todos/a6b38ff2-52f7-4a3f-95db-301593ec6675
+```
 
+**Response** `200 OK`
 ```json
 {
   "id": "a6b38ff2-52f7-4a3f-95db-301593ec6675",
@@ -144,18 +156,25 @@ Status: `200 OK`
 }
 ```
 
-Not found (`404 Not Found`):
-
+**Response** `404 Not Found`
 ```json
 {
   "message": "Todo not found"
 }
 ```
 
+---
+
 ### POST /todos
 
-Status: `201 Created`
+**Request**
+```bash
+curl -X POST http://localhost:3000/todos \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Buy groceries"}'
+```
 
+**Response** `201 Created`
 ```json
 {
   "id": "a6b38ff2-52f7-4a3f-95db-301593ec6675",
@@ -165,18 +184,25 @@ Status: `201 Created`
 }
 ```
 
-Validation error (`400 Bad Request`):
-
+**Response** `400 Bad Request`
 ```json
 {
   "message": "title is required and must be a non-empty string"
 }
 ```
 
+---
+
 ### PUT /todos/:id
 
-Status: `200 OK`
+**Request**
+```bash
+curl -X PUT http://localhost:3000/todos/a6b38ff2-52f7-4a3f-95db-301593ec6675 \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Updated task", "completed": true}'
+```
 
+**Response** `200 OK`
 ```json
 {
   "id": "a6b38ff2-52f7-4a3f-95db-301593ec6675",
@@ -186,18 +212,23 @@ Status: `200 OK`
 }
 ```
 
-Validation error (`400 Bad Request`):
-
+**Response** `400 Bad Request`
 ```json
 {
   "message": "completed must be a boolean"
 }
 ```
 
+---
+
 ### PATCH /todos/:id/toggle
 
-Status: `200 OK`
+**Request**
+```bash
+curl -X PATCH http://localhost:3000/todos/a6b38ff2-52f7-4a3f-95db-301593ec6675/toggle
+```
 
+**Response** `200 OK`
 ```json
 {
   "id": "a6b38ff2-52f7-4a3f-95db-301593ec6675",
@@ -207,37 +238,18 @@ Status: `200 OK`
 }
 ```
 
+---
+
 ### DELETE /todos/:id
 
-Status: `204 No Content`
-
-Response body:
-
-```text
-(empty)
+**Request**
+```bash
+curl -X DELETE http://localhost:3000/todos/a6b38ff2-52f7-4a3f-95db-301593ec6675
 ```
 
-## Example
-
-```bash
-# Create
-curl -X POST http://localhost:3000/todos \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Buy groceries"}'
-
-# List
-curl http://localhost:3000/todos
-
-# Toggle
-curl -X PATCH http://localhost:3000/todos/<id>/toggle
-
-# Update
-curl -X PUT http://localhost:3000/todos/<id> \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Updated task", "completed": true}'
-
-# Delete
-curl -X DELETE http://localhost:3000/todos/<id>
+**Response** `204 No Content`
+```text
+(empty body)
 ```
 
 ## Notes
