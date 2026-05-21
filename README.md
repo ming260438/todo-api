@@ -54,29 +54,23 @@ The server starts on **http://localhost:3000** (override with `PORT` env var).
 
 ```text
 todo-api/
-  .env
-  .env.example
-  .gitignore
-  package.json
-  tsconfig.json
-  README.md
-  src/
-    index.ts
-    controllers/
-      todosController.ts
-    models/
-      todo.ts
-    routes/
-      todos.ts
-    store/
-      todosStore.ts
+├── src/
+│   ├── index.ts                    # App entry point, middleware & route mounting
+│   ├── controllers/
+│   │   └── todosController.ts      # Request validation & response handling
+│   ├── models/
+│   │   └── todo.ts                 # Todo type/interface definition
+│   ├── routes/
+│   │   └── todos.ts                # REST endpoint definitions
+│   └── store/
+│       └── todosStore.ts           # In-memory data operations (no database)
+├── .env                            # Local environment variables (git-ignored)
+├── .env.example                    # Template for environment variables
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
-
-- `src/index.ts`: app bootstrap, middleware, and route mounting.
-- `src/routes/todos.ts`: REST endpoint definitions.
-- `src/controllers/todosController.ts`: request validation and response handling.
-- `src/store/todosStore.ts`: in-memory data operations (no database).
-- `src/models/todo.ts`: todo type/interface definition.
 
 ## Endpoints
 
