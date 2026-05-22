@@ -2,6 +2,11 @@
 
 REST API for a To-do List built with **Node.js + TypeScript + Express**. Data is stored in-memory — no database required.
 
+## Assignment Requirement
+
+- ทำ REST API โดยใช้ Node JS (JavaScript หรือ TypeScript) สำหรับโปรแกรม To do list โดยห้ามเชื่อมต่อกับ database
+- แล้วส่งงานผ่าน Github
+
 ## Tech Stack
 
 - Node.js
